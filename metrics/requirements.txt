@@ -1,5 +1,5 @@
 radon>=6.0
 pylint>=3.1
 pandas>=2.2
-cloc>=1.98
 PyGithub>=2.3
+# cloc se instala vía apt en el workflow; no por pip
