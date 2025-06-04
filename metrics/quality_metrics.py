@@ -1,5 +1,5 @@
 import pathlib, csv, statistics, subprocess, json, os, datetime
-from radon.complexity import cc_visit, SCORE
+from radon.complexity import cc_visit, cc_rank   # antes era: cc_visit, SCORE
 from github import Github
 
 REPO_URL  = "https://github.com/tiangolo/fastapi.git"
@@ -25,7 +25,7 @@ for f in LOCAL_DIR.rglob("*.py"):
         records.append({"file": str(f.relative_to(LOCAL_DIR)),
                         "name": b.name,
                         "complexity": b.complexity,
-                        "rank": SCORE.grading(b.complexity)})
+                        "rank": cc_rank(b.complexity)})
 
 with CSV_OUT.open("w", newline="") as fp:
     writer = csv.DictWriter(fp, fieldnames=records[0])
